@@ -1,4 +1,4 @@
-package com.kaecals.visuals.theme
+package com.kaecals.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

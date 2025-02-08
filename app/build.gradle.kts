@@ -44,7 +44,6 @@ dependencies {
     implementation(project(":ui"))
     implementation(project(":data"))
     implementation(project(":di"))
-    implementation(project(":visuals"))
     // Other Dependencies
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core.ktx)

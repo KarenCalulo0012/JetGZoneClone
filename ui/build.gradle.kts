@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":visuals"))
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
