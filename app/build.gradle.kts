@@ -43,7 +43,6 @@ dependencies {
     // Modules
     implementation(project(":ui"))
     implementation(project(":data"))
-    implementation(project(":di"))
     // Other Dependencies
     implementation(libs.kotlin.stdlib)
     implementation(libs.androidx.core.ktx)
@@ -60,4 +59,5 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    implementation(libs.koin.android)
 }

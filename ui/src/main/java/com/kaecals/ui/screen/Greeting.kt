@@ -17,12 +17,18 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.kaecals.jetgzoneclone.ui.R
+import com.kaecals.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-
-    Row(modifier = Modifier.fillMaxWidth().padding(24.dp), verticalAlignment = Alignment.CenterVertically) {
-        Box(modifier = Modifier.clip(CircleShape).size(50.dp)) {
+    val viewModel: MainViewModel = koinViewModel()
+    Row(modifier = Modifier
+        .fillMaxWidth()
+        .padding(24.dp), verticalAlignment = Alignment.CenterVertically) {
+        Box(modifier = Modifier
+            .clip(CircleShape)
+            .size(50.dp)) {
             Image(
                 painter = painterResource(R.drawable.ic_launcher_background),
                 contentDescription = null
@@ -33,7 +39,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             )
         }
         Text(
-            text = "Hello $name!",
+            text = "Hello ${viewModel.getViewModelText()}",
             modifier = modifier.padding(start = 16.dp),
             style = MaterialTheme.typography.titleLarge.copy(
                 color = MaterialTheme.colorScheme.primary

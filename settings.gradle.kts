@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "JetGZoneClone"
-include(":app", ":ui", ":data", ":di", ":db")
+include(":app", ":ui", ":data", ":db")
