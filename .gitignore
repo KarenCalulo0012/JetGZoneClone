@@ -75,3 +75,9 @@ lint/reports/
 
 # Other
 apikey.properties
+
+# Ignore Kotlin compiler files
+kotlin-compiler-*
+
+# Ignore Kotlin sessions directory
+.kotlin/sessions/
