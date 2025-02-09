@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -29,7 +30,9 @@ fun SideNavDrawer(
     content: @Composable () -> Unit,
     drawerContent: @Composable () -> Unit
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.background)) {
         content()
 
         // Overlay with a semi-transparent background
@@ -73,11 +76,13 @@ fun SideNavDrawer(
 
 @Composable
 fun SideNavDrawerContent() {
+    val textStyle =
+        MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.onBackground)
     Column(modifier = Modifier.padding(16.dp)) {
-        Text("Drawer Item 1")
+        Text("Drawer Item 1", style = textStyle)
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Drawer Item 2")
+        Text("Drawer Item 2", style = textStyle)
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Drawer Item 3")
+        Text("Drawer Item 3", style = textStyle)
     }
 }

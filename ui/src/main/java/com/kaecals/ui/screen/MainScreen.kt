@@ -9,6 +9,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.kaecals.ui.component.HeaderBar
 import com.kaecals.ui.component.SideNavDrawer
 import com.kaecals.ui.component.SideNavDrawerContent
 import com.kaecals.ui.model.navigationItem
@@ -20,7 +21,7 @@ fun MainScreen(content: @Composable (NavHostController) -> Unit = {}) {
     val isDrawerOpen = remember { mutableStateOf(false) }
 
     Scaffold(
-        topBar = {},
+        topBar = { HeaderBar() },
         bottomBar = {
             navController.BottomNavigationSection(
                 items = navigationItem,
