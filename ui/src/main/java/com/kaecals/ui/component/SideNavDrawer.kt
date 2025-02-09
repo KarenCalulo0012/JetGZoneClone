@@ -30,9 +30,7 @@ fun SideNavDrawer(
     content: @Composable () -> Unit,
     drawerContent: @Composable () -> Unit
 ) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(MaterialTheme.colorScheme.background)) {
+    Box(modifier = Modifier.fillMaxSize()) {
         content()
 
         // Overlay with a semi-transparent background
@@ -65,7 +63,7 @@ fun SideNavDrawer(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(250.dp)
-                    .background(Color.White)
+                    .background(MaterialTheme.colorScheme.background)
             ) {
                 drawerContent()
             }
