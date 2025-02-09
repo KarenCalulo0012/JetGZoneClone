@@ -59,5 +59,8 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    //koin
+    implementation(libs.koin.androidx.navigation)
+    implementation(libs.koin.androidx.compose)
     implementation(libs.koin.android)
 }

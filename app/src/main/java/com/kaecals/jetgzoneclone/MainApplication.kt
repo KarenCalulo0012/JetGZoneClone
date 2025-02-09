@@ -1,7 +1,8 @@
 package com.kaecals.jetgzoneclone
 
 import android.app.Application
-import com.kaecals.jetgzoneclone.di.appModule
+import com.kaecals.jetgzoneclone.di.networkModule
+import com.kaecals.jetgzoneclone.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -10,7 +11,7 @@ class MainApplication : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@MainApplication)
-            modules(appModule)
+            modules(networkModule, viewModelModule)
         }
     }
 }
