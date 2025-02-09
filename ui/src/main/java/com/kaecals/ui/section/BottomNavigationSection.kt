@@ -32,7 +32,9 @@ fun NavController.BottomNavigationSection(
     isDrawerOpen: Boolean,
     onDrawerToggle: () -> Unit,
     isAuthScreen: Boolean,
-    onAuthScreenToggle: (Boolean) -> Unit
+    onAuthScreenToggle: (Boolean) -> Unit,
+    isSearchScreen: Boolean,
+    onSearchScreenToggle: (Boolean) -> Unit,
 ) {
     val selectedIndex = remember { mutableIntStateOf(if (isDrawerOpen) 0 else 1) }
     val navigateState = remember { mutableStateOf<Route?>(null) }
@@ -85,8 +87,9 @@ fun NavController.BottomNavigationSection(
                             navigateState.value = items[selectedIndex.intValue].route
                         }
                         else -> {
-                            selectedIndex.intValue = index
-                            navigateState.value = item.route
+                            selectedIndex.intValue = if(isSearchScreen) 1 else index
+                            navigateState.value = if(isSearchScreen) HomeRoute else item.route
+                            onSearchScreenToggle(false)
                         }
                     }
                 },

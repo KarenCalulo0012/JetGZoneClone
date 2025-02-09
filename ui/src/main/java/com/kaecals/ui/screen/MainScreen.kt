@@ -21,20 +21,27 @@ fun MainScreen(content: @Composable (NavHostController) -> Unit = {}) {
     val navController = rememberNavController()
     val isDrawerOpen = remember { mutableStateOf(false) }
     val isAuthScreenVisible = remember { mutableStateOf(false) }
+    val isSearchScreenVisible = remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
-            topBar = { HeaderBar(onSignInClick = { isAuthScreenVisible.value = true }) },
+            topBar = {
+                HeaderBar(
+                    onSignInClick = { isAuthScreenVisible.value = true },
+                    onSearchClick = { isSearchScreenVisible.value = true }
+                )
+            },
             bottomBar = {
                 navController.BottomNavigationSection(
                     items = navigationItem,
                     isDrawerOpen = isDrawerOpen.value,
-                    onDrawerToggle = {
-                        isDrawerOpen.value = !isDrawerOpen.value
-                    },
+                    onDrawerToggle = { isDrawerOpen.value = !isDrawerOpen.value },
                     isAuthScreen = isAuthScreenVisible.value,
-                    onAuthScreenToggle = {
-                        isAuthScreenVisible.value = it
+                    onAuthScreenToggle = { isAuthScreenVisible.value = it },
+                    isSearchScreen = isSearchScreenVisible.value,
+                    onSearchScreenToggle = {
+                        isSearchScreenVisible.value = it
+                        isDrawerOpen.value = false
                     }
                 )
             }
@@ -46,6 +53,12 @@ fun MainScreen(content: @Composable (NavHostController) -> Unit = {}) {
                     content = { content(navController) },
                     drawerContent = { SideNavDrawerContent() }
                 )
+                if(isSearchScreenVisible.value) {
+                    SearchScreen(
+                        visible = isSearchScreenVisible.value,
+                        navController = navController
+                    )
+                }
             }
         }
 

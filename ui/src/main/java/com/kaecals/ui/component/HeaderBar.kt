@@ -25,7 +25,10 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
-fun HeaderBar(onSignInClick: () -> Unit = {}) {
+fun HeaderBar(
+    onSignInClick: () -> Unit = {},
+    onSearchClick: () -> Unit = {}
+) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -54,7 +57,8 @@ fun HeaderBar(onSignInClick: () -> Unit = {}) {
         Icon(
             imageVector = Icons.Default.Search,
             contentDescription = "Search",
-            tint = MaterialTheme.colorScheme.onBackground
+            tint = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.clickable { onSearchClick() }
         )
     }
 }
