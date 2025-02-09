@@ -1,5 +1,6 @@
 package com.kaecals.ui.screen
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -8,9 +9,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.kaecals.ui.component.VideoPlayer
 import com.kaecals.ui.component.floatingContent.DraggableImage
 import com.kaecals.ui.component.floatingContent.DraggableLayout
+import com.kaecals.viewmodel.WebViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun HomeScreen() {
@@ -26,7 +30,15 @@ fun HomeScreen() {
 
 @Composable
 fun PromoScreen() {
-    Text(text = "Promo Screen")
+    val viewModel: WebViewModel = koinViewModel()
+    val webView = viewModel.getWebView()
+    Box(modifier = Modifier.fillMaxSize()) {
+        AndroidView(
+            factory = { webView },
+            modifier = Modifier.fillMaxSize(),
+            update = { viewModel.loadUrl("https://gzone.ph/promotion/promo") }
+        )
+    }
 }
 
 @Composable
