@@ -14,7 +14,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             JetGZoneCloneTheme {
-                MainScreen(content = { MainNavHost(it) })
+                MainScreen { MainNavHost(it) }
             }
         }
     }
