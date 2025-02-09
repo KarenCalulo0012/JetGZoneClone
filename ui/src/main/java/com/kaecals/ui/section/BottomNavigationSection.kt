@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.kaecals.ui.component.rememberGelatinAnimation
 import com.kaecals.ui.model.BottomNavItem
+import com.kaecals.ui.navigation.AccountRoute
 import com.kaecals.ui.navigation.HomeRoute
 import com.kaecals.ui.navigation.MoreRoute
 import com.kaecals.ui.navigation.Route
@@ -28,7 +29,9 @@ import com.kaecals.ui.navigation.Route
 fun NavController.BottomNavigationSection(
     items: List<BottomNavItem>,
     isDrawerOpen: Boolean,
-    onDrawerToggle: () -> Unit
+    onDrawerToggle: () -> Unit,
+    isAuthScreen: Boolean,
+    onAuthScreenToggle: (Boolean) -> Unit
 ) {
     val selectedIndex = remember { mutableIntStateOf(if (isDrawerOpen) 0 else 1) }
     val navigateState = remember { mutableStateOf<Route?>(null) }
@@ -69,13 +72,21 @@ fun NavController.BottomNavigationSection(
                 label = { Text(text = item.name, color = textColor) },
                 selected = selected,
                 onClick = {
-                    if (item.route == MoreRoute) {
-                        selectedIndex.intValue = if (isDrawerOpen) 1 else 0
-                        if (selectedIndex.intValue == 0) navigateState.value = HomeRoute
-                        onDrawerToggle()
-                    } else {
-                        selectedIndex.intValue = index
-                        navigateState.value = item.route
+                    when (item.route) {
+                        MoreRoute -> {
+                            selectedIndex.intValue = if (isDrawerOpen) 1 else 0
+                            if (selectedIndex.intValue == 0) navigateState.value = HomeRoute
+                            onDrawerToggle()
+                        }
+                        AccountRoute -> {
+                            selectedIndex.intValue = if (isAuthScreen.not()) selectedIndex.intValue else index
+                            onAuthScreenToggle(true)
+                            navigateState.value = items[selectedIndex.intValue].route
+                        }
+                        else -> {
+                            selectedIndex.intValue = index
+                            navigateState.value = item.route
+                        }
                     }
                 },
                 colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent),

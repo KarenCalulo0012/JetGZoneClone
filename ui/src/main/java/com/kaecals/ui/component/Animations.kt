@@ -1,9 +1,15 @@
 package com.kaecals.ui.component
 
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -44,4 +50,18 @@ fun rememberGelatinAnimation(selected: Boolean): Animatable<Float, *> {
     }
 
     return scaleY
+}
+
+fun enterSlideInVertically(): EnterTransition {
+    return slideInVertically(
+        initialOffsetY = { fullHeight -> fullHeight },
+        animationSpec = tween(1000)
+    ) + fadeIn()
+}
+
+fun exitSlideOutVertically(): ExitTransition {
+    return slideOutVertically(
+        targetOffsetY = { fullHeight -> fullHeight },
+        animationSpec = tween(2000)
+    ) + fadeOut()
 }

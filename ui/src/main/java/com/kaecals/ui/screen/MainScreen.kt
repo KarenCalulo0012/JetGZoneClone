@@ -1,6 +1,7 @@
 package com.kaecals.ui.screen
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -19,25 +20,39 @@ import com.kaecals.ui.section.BottomNavigationSection
 fun MainScreen(content: @Composable (NavHostController) -> Unit = {}) {
     val navController = rememberNavController()
     val isDrawerOpen = remember { mutableStateOf(false) }
+    val isAuthScreenVisible = remember { mutableStateOf(false) }
 
-    Scaffold(
-        topBar = { HeaderBar() },
-        bottomBar = {
-            navController.BottomNavigationSection(
-                items = navigationItem,
-                isDrawerOpen = isDrawerOpen.value,
-                onDrawerToggle = {
-                    isDrawerOpen.value = !isDrawerOpen.value
-                }
-            )
+    Box(modifier = Modifier.fillMaxSize()) {
+        Scaffold(
+            topBar = { HeaderBar() },
+            bottomBar = {
+                navController.BottomNavigationSection(
+                    items = navigationItem,
+                    isDrawerOpen = isDrawerOpen.value,
+                    onDrawerToggle = {
+                        isDrawerOpen.value = !isDrawerOpen.value
+                    },
+                    isAuthScreen = isAuthScreenVisible.value,
+                    onAuthScreenToggle = {
+                        isAuthScreenVisible.value = it
+                    }
+                )
+            }
+        ) {
+            Box(modifier = Modifier.padding(it)) {
+                SideNavDrawer(
+                    isOpen = isDrawerOpen.value,
+                    onClose = { isDrawerOpen.value = false },
+                    content = { content(navController) },
+                    drawerContent = { SideNavDrawerContent() }
+                )
+            }
         }
-    ) {
-        Box(modifier = Modifier.padding(it)) {
-            SideNavDrawer(
-                isOpen = isDrawerOpen.value,
-                onClose = { isDrawerOpen.value = false },
-                content = { content(navController) },
-                drawerContent = { SideNavDrawerContent() }
+
+        if (isAuthScreenVisible.value) {
+            AuthScreen(
+                visible = isAuthScreenVisible.value,
+                onClose = { isAuthScreenVisible.value = false },
             )
         }
     }
