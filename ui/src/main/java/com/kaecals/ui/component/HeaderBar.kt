@@ -1,5 +1,6 @@
 package com.kaecals.ui.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,7 +25,7 @@ import androidx.compose.ui.unit.dp
 
 @Preview
 @Composable
-fun HeaderBar() {
+fun HeaderBar(onSignInClick: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -33,12 +34,19 @@ fun HeaderBar() {
             .statusBarsPadding(),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(text = "Sign In", color = MaterialTheme.colorScheme.onBackground)
+        Text(
+            text = "Sign In",
+            color = MaterialTheme.colorScheme.onBackground,
+            modifier = Modifier.clickable {
+                onSignInClick()
+            })
         Button(
-            onClick = {},
+            onClick = onSignInClick,
             shape = RoundedCornerShape(4.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Blue),
-            modifier = Modifier.wrapContentSize().padding(start = 16.dp)
+            modifier = Modifier
+                .wrapContentSize()
+                .padding(start = 16.dp)
         ) {
             Text(text = "WIN P8888", color = Color.White)
         }

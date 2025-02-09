@@ -25,6 +25,6 @@ val navigationItem =
         BottomNavItem(drawable = Icons.Default.Menu, name = "More", route = MoreRoute),
         BottomNavItem(drawable = Icons.Default.Home, name = "Home", route = HomeRoute),
         BottomNavItem(drawable = Icons.Default.Favorite, name = "Promo", route = PromoRoute),
-        BottomNavItem(drawable = Icons.Default.ShoppingCart, name = "Reward", route = WalletRoute),
+        BottomNavItem(drawable = Icons.Default.ShoppingCart, name = "Wallet", route = WalletRoute),
         BottomNavItem(drawable = Icons.Default.Person, name = "Account", route = AccountRoute),
     )

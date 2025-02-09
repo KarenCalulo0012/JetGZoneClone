@@ -24,6 +24,7 @@ import com.kaecals.ui.navigation.AccountRoute
 import com.kaecals.ui.navigation.HomeRoute
 import com.kaecals.ui.navigation.MoreRoute
 import com.kaecals.ui.navigation.Route
+import com.kaecals.ui.navigation.WalletRoute
 
 @Composable
 fun NavController.BottomNavigationSection(
@@ -78,7 +79,7 @@ fun NavController.BottomNavigationSection(
                             if (selectedIndex.intValue == 0) navigateState.value = HomeRoute
                             onDrawerToggle()
                         }
-                        AccountRoute -> {
+                        AccountRoute, WalletRoute -> {
                             selectedIndex.intValue = if (isAuthScreen.not()) selectedIndex.intValue else index
                             onAuthScreenToggle(true)
                             navigateState.value = items[selectedIndex.intValue].route

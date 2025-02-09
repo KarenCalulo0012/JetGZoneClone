@@ -24,7 +24,7 @@ fun MainScreen(content: @Composable (NavHostController) -> Unit = {}) {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Scaffold(
-            topBar = { HeaderBar() },
+            topBar = { HeaderBar(onSignInClick = { isAuthScreenVisible.value = true }) },
             bottomBar = {
                 navController.BottomNavigationSection(
                     items = navigationItem,
