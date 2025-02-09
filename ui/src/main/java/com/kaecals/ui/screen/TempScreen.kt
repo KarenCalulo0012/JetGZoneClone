@@ -1,7 +1,10 @@
 package com.kaecals.ui.screen
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import com.kaecals.ui.component.floatingContent.DraggableImage
+import com.kaecals.ui.component.floatingContent.DraggableLayout
 
 @Composable
 fun MoreScreen() {
@@ -10,7 +13,10 @@ fun MoreScreen() {
 
 @Composable
 fun HomeScreen() {
-    Greeting(name = "Android")
+    Column {
+        Greeting(name = "Android")
+        DraggableLayout(draggableContent = { width, height -> DraggableImage(width, height) })
+    }
 }
 
 @Composable
