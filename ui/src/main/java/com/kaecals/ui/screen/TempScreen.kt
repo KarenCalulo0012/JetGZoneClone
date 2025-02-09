@@ -24,6 +24,8 @@ import org.koin.androidx.compose.koinViewModel
 fun HomeScreen() {
     Column {
 //        Greeting(name = "Android")
+        GameTabSection { println("Selected tab index: $it") }
+        HorizontalDivider(thickness = 8.dp, color = Color.Unspecified)
         CarouselScreen()
         TextMarquee(
             text = "Congratulations bi*** ***aj！the ₱ 20,666,999jack!! Please claim your price. Thank you!, " +
