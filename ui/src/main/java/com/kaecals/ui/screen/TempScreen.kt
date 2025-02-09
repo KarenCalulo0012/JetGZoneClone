@@ -13,11 +13,6 @@ import com.kaecals.ui.component.floatingContent.DraggableImage
 import com.kaecals.ui.component.floatingContent.DraggableLayout
 
 @Composable
-fun MoreScreen() {
-    Text(text = "More Screen")
-}
-
-@Composable
 fun HomeScreen() {
     Column {
         Greeting(name = "Android")

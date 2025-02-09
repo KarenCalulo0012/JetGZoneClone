@@ -11,14 +11,13 @@ import com.kaecals.ui.navigation.PromoRoute
 import com.kaecals.ui.navigation.WalletRoute
 import com.kaecals.ui.screen.AccountScreen
 import com.kaecals.ui.screen.HomeScreen
-import com.kaecals.ui.screen.MoreScreen
 import com.kaecals.ui.screen.PromoScreen
 import com.kaecals.ui.screen.WalletScreen
 
 @Composable
 fun MainNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = HomeRoute) {
-        composable<MoreRoute> { MoreScreen() }
+        composable<MoreRoute> { }
         composable<HomeRoute> { HomeScreen() }
         composable<PromoRoute> { PromoScreen() }
         composable<WalletRoute> { WalletScreen() }
