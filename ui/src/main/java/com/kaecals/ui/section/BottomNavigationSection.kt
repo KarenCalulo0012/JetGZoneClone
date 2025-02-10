@@ -2,13 +2,16 @@ package com.kaecals.ui.section
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.size
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -25,7 +28,9 @@ import com.kaecals.ui.navigation.HomeRoute
 import com.kaecals.ui.navigation.MoreRoute
 import com.kaecals.ui.navigation.Route
 import com.kaecals.ui.navigation.WalletRoute
+import com.kaecals.utils.noRippleTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NavController.BottomNavigationSection(
     items: List<BottomNavItem>,
@@ -61,41 +66,43 @@ fun NavController.BottomNavigationSection(
             val textColor = if (selected) color.primary else color.onSurface
             val scaleY = rememberGelatinAnimation(selected)
 
-            NavigationBarItem(
-                icon = {
-                    Icon(
-                        modifier = Modifier
-                            .size(24.dp)
-                            .scale(1f, scaleY.value),
-                        imageVector = item.drawable,
-                        contentDescription = item.name,
-                        tint = iconColor
-                    )
-                },
-                label = { Text(text = item.name, color = textColor) },
-                selected = selected,
-                onClick = {
-                    when (item.route) {
-                        MoreRoute -> {
-                            selectedIndex.intValue = if (isDrawerOpen) 1 else 0
-                            if (selectedIndex.intValue == 0) navigateState.value = HomeRoute
-                            onDrawerToggle()
+            CompositionLocalProvider(LocalRippleConfiguration provides noRippleTheme) {
+                NavigationBarItem(
+                    icon = {
+                        Icon(
+                            modifier = Modifier
+                                .size(24.dp)
+                                .scale(1f, scaleY.value),
+                            imageVector = item.drawable,
+                            contentDescription = item.name,
+                            tint = iconColor
+                        )
+                    },
+                    label = { Text(text = item.name, color = textColor) },
+                    selected = selected,
+                    onClick = {
+                        when (item.route) {
+                            MoreRoute -> {
+                                selectedIndex.intValue = if (isDrawerOpen) 1 else 0
+                                if (selectedIndex.intValue == 0) navigateState.value = HomeRoute
+                                onDrawerToggle()
+                            }
+                            AccountRoute, WalletRoute -> {
+                                selectedIndex.intValue = if (isAuthScreen.not()) selectedIndex.intValue else index
+                                onAuthScreenToggle(true)
+                                navigateState.value = items[selectedIndex.intValue].route
+                            }
+                            else -> {
+                                selectedIndex.intValue = if(isSearchScreen) 1 else index
+                                navigateState.value = if(isSearchScreen) HomeRoute else item.route
+                                onSearchScreenToggle(false)
+                            }
                         }
-                        AccountRoute, WalletRoute -> {
-                            selectedIndex.intValue = if (isAuthScreen.not()) selectedIndex.intValue else index
-                            onAuthScreenToggle(true)
-                            navigateState.value = items[selectedIndex.intValue].route
-                        }
-                        else -> {
-                            selectedIndex.intValue = if(isSearchScreen) 1 else index
-                            navigateState.value = if(isSearchScreen) HomeRoute else item.route
-                            onSearchScreenToggle(false)
-                        }
-                    }
-                },
-                colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent),
-                interactionSource = remember { MutableInteractionSource() }
-            )
+                    },
+                    colors = NavigationBarItemDefaults.colors(indicatorColor = Color.Transparent),
+                    interactionSource = remember { MutableInteractionSource() }
+                )
+            }
         }
     }
 }

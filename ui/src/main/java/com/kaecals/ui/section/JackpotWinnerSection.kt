@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.kaecals.jetgzoneclone.ui.R
 import com.kaecals.ui.component.AutoScrollList
 import com.kaecals.ui.model.jackpotWinnerList
-import com.kaecals.utils.maskName
+import com.kaecals.utils.maskJackpotWinnerName
 import java.text.DecimalFormat
 
 @Composable
@@ -50,7 +50,7 @@ fun JackpotWinnerSection() {
             Spacer(Modifier.width(8.dp))
 
             Text(
-                text = maskName(jackpotWinner.userName),
+                text = maskJackpotWinnerName(jackpotWinner.userName),
                 style =
                 TextStyle(
                     fontSize = 14.sp,
