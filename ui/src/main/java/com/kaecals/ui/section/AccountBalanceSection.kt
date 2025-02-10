@@ -12,8 +12,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.kaecals.jetgzoneclone.ui.R
 import com.kaecals.ui.component.IconImage
-import com.tbu.gamezone.ui.R
 
 @Composable
 fun AccountBalanceSection(

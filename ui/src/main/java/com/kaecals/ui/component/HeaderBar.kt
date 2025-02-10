@@ -21,8 +21,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.kaecals.jetgzoneclone.ui.R
 import com.kaecals.ui.section.AccountBalanceSection
-import com.tbu.gamezone.ui.R
 
 @Preview
 @Composable
