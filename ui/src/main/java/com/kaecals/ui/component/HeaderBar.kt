@@ -27,7 +27,7 @@ import com.kaecals.ui.section.AccountBalanceSection
 @Preview
 @Composable
 fun HeaderBar(
-    isSignedIn: Boolean = true,
+    isSignedIn: Boolean = false,
     onSignInClick: () -> Unit = {},
     onSearchClick: () -> Unit = {},
 ) {
@@ -37,7 +37,7 @@ fun HeaderBar(
             .wrapContentHeight()
             .padding(horizontal = 12.dp)
             .statusBarsPadding()
-            .background(color = Color.Transparent),
+            .background(color = Color.Black),
         verticalAlignment = Alignment.CenterVertically
     ) {
 

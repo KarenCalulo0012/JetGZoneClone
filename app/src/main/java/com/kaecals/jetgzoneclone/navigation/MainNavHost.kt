@@ -10,9 +10,9 @@ import com.kaecals.ui.navigation.MoreRoute
 import com.kaecals.ui.navigation.PromoRoute
 import com.kaecals.ui.navigation.WalletRoute
 import com.kaecals.ui.screen.AccountScreen
-import com.kaecals.ui.screen.HomeScreen
 import com.kaecals.ui.screen.PromoScreen
 import com.kaecals.ui.screen.WalletScreen
+import com.kaecals.ui.screen.home.HomeScreen
 
 @Composable
 fun MainNavHost(navController: NavHostController) {
