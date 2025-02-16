@@ -52,3 +52,8 @@ fun ScreenContent(lazyListState: LazyListState = rememberLazyListState()) {
         }
     }
 }
+
+@Composable
+fun BlankScreen(text: String = "") {
+    Text(text = "$text Screen")
+}
